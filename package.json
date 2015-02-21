@@ -1,33 +1,47 @@
 { "name": "parametric-svg"
 , "version": "0.0.0"
 , "description": "Parametric vector drawings in the browser. No kidding."
-, "license": "MIT"
-, "keywords":
-  [ "svg"
-  , "parametric"
-  , "vector"
-  , "cad"
-  ]
-
-, "author": "Tomek Wiszniewski <t.wiszniewski@gmail.com>"
-, "repository":
-  { "type": "git"
-  , "url": "git@github.com:parametric-svg/js.git"
-  }
-
-, "main": "dist.es5/n.js"
 
 , "scripts":
-  { "test": "browserify test/index.js --transform 6to5ify | tape-run --browser=phantom | tap-spec"
+  { "test": "browserify test.js --transform babelify | tape-run --browser=phantom | tap-spec"
   , "prepublish": "gulp build"
   }
 
 , "devDependencies":
   { "browserify": "8.1.3"
-  , "6to5ify": "4.0.0"
-  , "tape-run": "0.3.0"
+  , "babelify": "5.0.3"
   , "tape-catch": "1.0.4"
-  , "6to5": "3.3.7"
-  , "tap-spec": "2.2.0"
+  , "tap-spec": "2.2.1"
+  , "tape-run": "0.3.0"
+
+  , "gulp": "3.8.11"
+  , "gulp-babel": "4.0.0"
+  }
+
+, "main": "/dist.es5/parametric-svg.js"
+, "files":
+  [ "/dist.es5/"
+  , "/dist.es6/"
+  , "/Readme.md"
+  , "/License.md"
+  ]
+
+, "author": "Tomek Wiszniewski <t.wiszniewski@gmail.com>"
+, "license": "MIT"
+, "keywords":
+  [ "svg"
+  , "parametric"
+  , "dynamic"
+  , "graphics"
+  , "visualisation"
+  , "drawings"
+  , "2d"
+  , "vector"
+  , "cad"
+  , "processing"
+  ]
+, "repository":
+  { "type": "git"
+  , "url": "git@github.com:parametric-svg/js.git"
   }
 }
