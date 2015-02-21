@@ -1,6 +1,6 @@
 { "name": "parametric-svg"
 , "version": "0.0.0"
-, "description": "Parametric vector drawings in the browser. Really."
+, "description": "Parametric vector drawings in the browser. No kidding."
 , "license": "MIT"
 , "keywords":
   [ "svg"

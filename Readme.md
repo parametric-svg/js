@@ -6,7 +6,7 @@
   <img alt="parametric.svg" src="https://rawgit.com/parametric-svg/parametric.svg/master/assets/logo.svg" />
 </h1>
 
-**Parametric vector drawings in the browser. Really.**
+**Parametric vector graphics in the browser. No kidding.**
 
 
 
