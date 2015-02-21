@@ -6,7 +6,7 @@ deploy:
   provider: npm
   email: t.wiszniewski@gmail.com
   api_key:
-    secure: TpgNorhjeqXuXpbQLimANei4kXgt++3IfzM8M4xJtPbwEvPMckKAZ8pSMJOkKNKQA1zE+kOf4Nw5YnUZKh24X03sQIHIyyp7PAaaSHpcK3pzO4MHuIOH/yn3r7MaBjFuCaucH9RUX+5Acwt5Hlq3yHWGzzKZ1NCp5JIE/fzmo+o=
+    secure: WHY6DZHvaossWCQBXFNDG+Ydz0cVcfjlZ3ugZnxhVPwvqR+EE3wgR4b1rBrHRn+95KT8Yinmtcncrk4R9dMsmH/3YHoSdTlWdidFkayUc98i/chLZOD1F7ptAfjVP7L/YXm1wKkdJ8jY6Kg+AbyaNSWsTQs4BMfpqGal2bd+oQo=
   on:
     tags: true
     all_branches: true
