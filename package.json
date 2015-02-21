@@ -1,6 +1,6 @@
 { "name": "parametric-svg"
 , "version": "0.0.0"
-, "description": "Parametric vector drawings in the browser. No kidding."
+, "description": "Parametric 2D visualisations in the browser – pure, native SVG."
 
 , "scripts":
   { "test": "browserify test.js --transform babelify | tape-run --browser=phantom | tap-spec"
