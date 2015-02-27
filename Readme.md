@@ -11,6 +11,8 @@
 
 **Parametric 2D graphics in the browser. With pure SVG.**
 
+**Heads up!** This package is in an early development stage. Not ready for use yet.
+
 
 
 
