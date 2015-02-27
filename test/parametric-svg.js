@@ -8,6 +8,7 @@ import circle from "./fixtures/circle";
 function test (title, ...rest) {
   return tape("parametricSVG:  " + title, ...rest);
   }
+test.__proto__ = tape;
 
 
 test("Works with an SVG document root", (is) => {
@@ -26,31 +27,31 @@ test("Works with an SVG document root", (is) => {
   });
 
 
-test("Works with an SVG element", (is) => {
+test.skip("Works with an SVG element", (is) => {
   is.end();
   });
 
 
-test("Works with a VirtualTree", (is) => {
+test.skip("Works with a VirtualTree", (is) => {
   is.end();
   });
 
 
-test("Changes nothing when no attribute is parametric", (is) => {
+test.skip("Changes nothing when no attribute is parametric", (is) => {
   is.end();
   });
 
 
-test("Creates a new attribute", (is) => {
+test.skip("Creates a new attribute", (is) => {
   is.end();
   });
 
 
-test("Updates an existing attribute", (is) => {
+test.skip("Updates an existing attribute", (is) => {
   is.end();
   });
 
 
-test("Changes multiple attributes at once", (is) => {
+test.skip("Changes multiple attributes at once", (is) => {
   is.end();
   });
