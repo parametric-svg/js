@@ -1,5 +1,5 @@
 { "name": "parametric-svg"
-, "version": "0.0.0"
+, "version": "0.0.0-actively-developed.0"
 , "description": "Parametric 2D visualisations in the browser – pure, native SVG."
 
 , "scripts":
