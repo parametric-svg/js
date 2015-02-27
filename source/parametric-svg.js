@@ -39,3 +39,5 @@
   * @returns {VirtualTree}
   *   A cached virtual DOM tree for lightning-fast redraws.
   */
+
+export default function parametricSVG () {}
