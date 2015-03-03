@@ -13,19 +13,19 @@ test("getParameters works", (is) => {
   console.log(JSON.stringify(parameters));
 
   is.equal
-    ( parameters.native
+    ( parameters.native.value
     , "works"
     , "with `<ref>`s from the native SVG namespace"
     );
 
   is.equal
-    ( parameters.parametric
+    ( parameters.parametric.value
     , "works as well"
     , "with `<ref>`s from the parametric namespace"
     );
 
   is.equal
-    ( parameters.overridden
+    ( parameters.overridden.value
     , "yup"
     , "overriding native `<ref>`s with `<parametric:ref>`s"
     );

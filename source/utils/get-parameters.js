@@ -1,5 +1,6 @@
 import "babel/polyfill";
 import asObject from "as/object";
+import evalExpression from "eval-expression";
 
 import
   { PARAMETRIC_NAMESPACE, PARAMETRIC_NAMESPACE_PREFIX
@@ -19,14 +20,21 @@ function namespaceParameters (svgRoot, namespace, prefix=null) {
     ;
 
   // Map the keys and values to an object and return.
-  return asObject(elements.map(element => (
-    { key: element.getAttribute("param")
-    , value:
+  return asObject(elements.map(element => {
+    var value, error;
+    var rawValue =
       (  element.getAttribute("default")
       || (textContent = element.firstChild) && textContent.nodeValue
-      || null
-      )
-    })));
+      || "null"
+      );
+    try {value = evalExpression(rawValue);}
+    catch (e) {error = e;}
+
+    return (
+      { key: element.getAttribute("param")
+      , value: {error, value}
+      });
+    }));
   }
 
 
