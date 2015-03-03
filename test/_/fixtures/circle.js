@@ -1,10 +1,12 @@
-export default `
-<svg xmlns:parametric="https://github.com/parametric-svg/spec/tree/0.1">
+export default
+`<svg version="1.1"
+  xmlns:parametric="https://github.com/parametric-svg/spec/tree/0.1"
+  >
   <defs>
     <parametric:ref param="radius" default="6" />
     <parametric:ref param="factor" default="2" />
     <parametric:ref param="extra" default="2" />
-  </defs>
+    </defs>
   <circle id="circle-radius"
     parametric:r="radius" r="3"
     />
@@ -14,5 +16,5 @@ export default `
   <circle id="circle-factor-plus"
     parametric:r="2 * factor + extra" r="3"
     />
-</svg>
+  </svg>
 `;
