@@ -10,7 +10,6 @@ import svgString from "./_/fixtures/parameters";
 
 test("getParameters works", (is) => {
   let parameters = getParameters(domify(svgString));
-  console.log(JSON.stringify(parameters));
 
   is.equal
     ( parameters.native.value
@@ -31,59 +30,4 @@ test("getParameters works", (is) => {
     );
 
   is.end();
-
-/*
-  is.skip
-    ( "all is well"</ref>
-    , "inline"
-    );
-
-  is.skip
-    ( default="'failure'" />
-    , "last-wins"
-    );
-  is.skip
-    ( default="'victory'" />
-    , "last-wins"
-    );
-
-  is.skip
-    ( default="'won'">"lost"</parametric:ref>
-    , "default-wins"
-    );
-
-  is.skip
-    ( default="9" />
-    , "number-nine"
-    );
-  is.skip
-    ( default="true" />
-    , "boolean-true"
-    );
-  is.skip
-    ( default="'alright'" />
-    , "string-alright" default="'alright'" />
-    );
-  is.skip
-    (  default='"Double quoted"' />
-    , "string-double-quoted"
-    );
-
-  is.skip
-    ( default="=" />
-    , "invalid-fails"
-    );
-  is.skip
-    ( default="[]" />
-    , "array-fails"
-    );
-  is.skip
-    ( default="{}" />
-    , "object-fails"
-    );
-  is.skip
-    ( default="null" />
-    , "null-fails"
-    );
-*/
   });

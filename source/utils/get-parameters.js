@@ -39,7 +39,6 @@ function namespaceParameters (svgRoot, namespace, prefix=null) {
 
 
 export default function getParameters (svgRoot) {
-  console.log(require("format-json").diffy(namespaceParameters(svgRoot, PARAMETRIC_NAMESPACE, PARAMETRIC_NAMESPACE_PREFIX)));
   return Object.assign({}
     , namespaceParameters(svgRoot, SVG_NAMESPACE, SVG_NAMESPACE_PREFIX)
     , namespaceParameters(svgRoot, PARAMETRIC_NAMESPACE, PARAMETRIC_NAMESPACE_PREFIX)
