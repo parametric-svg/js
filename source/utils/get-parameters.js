@@ -9,12 +9,13 @@ import
 
 function namespaceParameters (svgRoot, namespace, prefix=null) {
   let textContent;
-  // Get `<ref>` elements of the namespace.
+  // Get `<ref>` elements belonging to the `namespace`,
   let elements = Array.from(svgRoot.getElementsByTagNameNS
     ( namespace
     , "ref"
     ));
-  // Fall back to `<prefix:ref>` (no namespace support in HTML5).
+
+  // …or fall back to `<prefix:ref>` (no namespace support in HTML5).
   if (!elements.length && prefix) elements
     = Array.from(svgRoot.getElementsByTagName(prefix + ":ref"))
     ;

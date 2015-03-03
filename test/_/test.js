@@ -1,9 +1,8 @@
 import tape from "tape-catch";
 
 
-export default (partName) => {
-  let prefix = partName + ":  ";
+export default (functionName) => {
   return function test (description, ...rest) {
-    return tape(prefix + description, ...rest);
+    return tape(functionName + ":  " + description, ...rest);
     };
   };

@@ -8,7 +8,7 @@ import getParameters from "../source/utils/get-parameters";
 import svgString from "./_/fixtures/parameters";
 
 
-test("getParameters works", (is) => {
+test("`getParameters` works", (is) => {
   let parameters = getParameters(domify(svgString));
 
   is.equal
