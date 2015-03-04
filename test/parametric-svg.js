@@ -1,2 +1,2 @@
-import "./api";
-import "./behavior";
+import "./parametric-svg/api";
+import "./parametric-svg/behavior";

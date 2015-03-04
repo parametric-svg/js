@@ -3,7 +3,7 @@ import tape from "tape-catch";
 import toDOM from "domify";
 import parametricSVG from "../../source/parametric-svg";
 
-import circle from "../fixtures/circle";
+import circle from "../_/fixtures/circle";
 
 function test (title, ...rest) {
   return tape("parametricSVG:  " + title, ...rest);

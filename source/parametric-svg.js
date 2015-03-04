@@ -25,6 +25,7 @@ export default function parametricSVG (root, parameters={}) {
       ( Array.from(svgRoot.childNodes)
       , getParameters(svgRoot)
       );
+    }
 
 
    /**
