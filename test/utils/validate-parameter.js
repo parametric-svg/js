@@ -57,5 +57,10 @@ test("Errors upon filthy types", (is) => {
     , "null"
     );
 
+  is.ok
+    ( validateParameter(NaN).error
+    , "NaN"
+    );
+
   is.end();
   });
