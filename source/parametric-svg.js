@@ -1,14 +1,19 @@
-import virtualTree from "./virtual-tree";
+import VirtualTree from "./virtual-tree";
 import getParameters from "./utils/get-parameters";
+import validateParameter from "./utils/validate-parameter";
 
 
 export default function parametricSVG (root, parameters={}) {
-  let tree, svgRoot;
+  let tree, svgRoot, element;
+
+  let parsedParameters = {};
+  for (let parameter of parameters) {
+    parsedParameters[parameter] = validateParameter(parameters[parameter]);
+    }
 
    /**
-    * @function parametricSVG
-    *   Parse and render all elements within the `svgRoot`. Defaults set with `<ref>` elements
-    *   will be used for calculation, unless you override them with `parameters`.
+    * Parse and render all elements within the `svgRoot`. Defaults set with `<ref>` elements
+    * will be used for calculation, unless you override them with `parameters`.
     *
     * @param  {SVGSVGElement}  svgRoot
     *   An `<svg>` element.
@@ -19,18 +24,23 @@ export default function parametricSVG (root, parameters={}) {
     *
     * @returns {VirtualTree}
     *   A cached virtual DOM tree for lightning-fast redraws.
+    *
+    * @function parametricSVG
     */
   if ((svgRoot = root) instanceof SVGSVGElement) {
-    tree = new virtualTree
+    tree = new VirtualTree
       ( Array.from(svgRoot.childNodes)
-      , getParameters(svgRoot)
+      , { parameters: Object.assign
+          ( getParameters(svgRoot)
+          , parsedParameters
+          )
+        }
       );
     }
 
 
    /**
-    * @function parametricSVG
-    *   Pass any SVG node (like `<circle>`) to parse and render the node and all its descendants.
+    * Pass any SVG node (like `<circle>`) to parse and render the node and all its descendants.
     *
     * @param  {SVGElement}  element
     *
@@ -39,12 +49,19 @@ export default function parametricSVG (root, parameters={}) {
     *
     * @returns {VirtualTree}
     *   A cached virtual DOM tree for lightning-fast redraws.
+    *
+    * @function parametricSVG
     */
+  else if ((element = root) instanceof SVGElement) {
+    tree = new VirtualTree
+      ( [element]
+      , {parameters: parsedParameters}
+      );
+    }
 
    /**
-    * @function parametricSVG
-    *   Pass a cached `VirtualTree` to render the tree without reparsing any DOM. This is the fastest
-    *   option.
+    * Pass a cached `VirtualTree` to render the tree without reparsing any DOM. This is the fastest
+    * option.
     *
     * @param  {VirtualTree}  virtualTree
     *
@@ -53,5 +70,12 @@ export default function parametricSVG (root, parameters={}) {
     *
     * @returns {VirtualTree}
     *   A cached virtual DOM tree for lightning-fast redraws.
+    *
+    * @function parametricSVG
     */
+  else if (((tree = root) instanceof VirtualTree)) throw new TypeError("parametricSVG: "
+    + "The first argument must be an `SVGSVGElement`, `SVGElement`, or `VirtualTree`."
+    );
+
+  return tree.render();
   }
