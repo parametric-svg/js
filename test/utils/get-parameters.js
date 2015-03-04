@@ -49,3 +49,33 @@ test("Handles parameter declarations the right way", (is) => {
 
   is.end();
   });
+
+
+test("Works with different data types", (is) => {
+
+  is.equal
+    ( parameters["number-nine"].value
+    , 9
+    , "numbers"
+    );
+
+  is.equal
+    ( parameters["boolean-true"].value
+    , true
+    , "booleans"
+    );
+
+  is.equal
+    ( parameters["string-alright"].value
+    , "alright"
+    , "single-quoted strings"
+    );
+
+  is.equal
+    ( parameters["string-double-quoted"].value
+    , "Double quoted"
+    , "double-quoted strings"
+    );
+
+  is.end();
+  });
