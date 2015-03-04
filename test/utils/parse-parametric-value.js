@@ -38,3 +38,34 @@ test("Fishes out parameters", (is) => {
 
   is.end();
   });
+
+
+test("Errors when it should", (is) => {
+
+  is.ok
+    ( parseParametricValue("&%# that's no fine js, ol' chap").error
+    , "with invalid code"
+    );
+
+  is.ok
+    ( parseParametricValue("expressionOne; expression + 2;").error
+    , "with more than one expression"
+    );
+
+  is.ok
+    ( parseParametricValue("true;").error
+    , "when the expression ends with a semicolon"
+    );
+
+  is.ok
+    ( parseParametricValue("2\n+ 4").error
+    , "when the expression contains a newline"
+    );
+
+  is.ok
+    ( parseParametricValue("var something").error
+    , "with a statement"
+    );
+
+  is.end();
+  });
