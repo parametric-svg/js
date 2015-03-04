@@ -9,6 +9,6 @@ test("Is converted to DOM on .toDOM()", (is) => {
   is.end();
   });
 
-test("Is converted to a DOM string on .toString()", (is) => {
+test("Is converted to an XML string on .toString()", (is) => {
   is.end();
   });
