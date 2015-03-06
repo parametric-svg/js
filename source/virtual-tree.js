@@ -1,5 +1,18 @@
 import {SVG_NAMESPACE} from "./settings";
 import ParametricAttribute from "./parametric-attribute";
+import warn from "./utils/warn";
+
+let getParameter = (virtualTree) => function getParameter (name) {
+  let parameter = virtualTree._parameters[name];
+  if (!parameter || parameter.error) {
+    warn
+      ( `Attempting to use the parameter \`${name}\`. `
+      + parameter.error || "It hasn't been defined."
+      );
+    return;
+    }
+  return parameter.value;
+  };
 
 
 /**
@@ -37,14 +50,10 @@ export default class VirtualTree {
 
   _render () {
     // Call `.update()` on every ParametricAttribute,
-    let getParameter = (name) => {
-      let parameter = this._parameters[name];
-      return parameter && parameter.value;
-      };
     this._parametricAttributes.forEach(parametricAttribute => {
       // passing relevant values from `this._parameters`.
       parametricAttribute.update(
-        ...parametricAttribute.parameterNames.map(getParameter)
+        ...parametricAttribute.parameterNames.map(getParameter(this))
         );
       });
 
