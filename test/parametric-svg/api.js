@@ -6,6 +6,7 @@ let test = _test("parametric-svg API");
 import parametricSVG from "../../source/parametric-svg";
 import VirtualTree from "../../source/virtual-tree";
 
+import {SIMPLE} from "../_/fixtures/circles/data";
 import circles from "../_/fixtures/circles";
 
 
@@ -34,9 +35,13 @@ test("Works with an SVG document root", (is) => {
   let svg = toDOM(circles);
   let tree = parametricSVG(svg);
 
+  let container = document.createElement("div");
+  container.appendChild(svg);
+
   is.ok
-    ( svg instanceof SVGSVGElement
-    , "leaving the SVG root intact"
+    (  svg instanceof SVGSVGElement
+    && svg.parentNode == container
+    , "leaving the SVG root intact and in place"
     );
 
   is.ok
@@ -44,35 +49,67 @@ test("Works with an SVG document root", (is) => {
     , "returning a VirtualTree"
     );
 
+  is.equal
+    ( svg.getElementById("circle-simple").getAttributeNS(null, "r")
+    , "" + SIMPLE
+    , "updating the SVG DOM"
+    );
+
   is.end();
   });
 
 
-test.skip("Works with an SVG element", (is) => {
+test("Works with an SVG element", (is) => {
+  let circle = toDOM(circles).getElementById("circle-simple");
+  let tree = parametricSVG(circle, {simple: 50});
+
+  let circleParent = circle.parentNode;
+  is.ok
+    (  circle instanceof SVGElement
+    && circle.parentNode == circleParent
+    , "leaving the element intact and in place"
+    );
+
+  is.ok
+    ( tree instanceof VirtualTree
+    , "returning a VirtualTree"
+    );
+
+  is.equal
+    ( circle.getAttributeNS(null, "r")
+    , "50"
+    , "updating the element's DOM"
+    );
+
   is.end();
   });
 
 
-test.skip("Works with a VirtualTree", (is) => {
-  is.end();
-  });
+test("Works with a VirtualTree", (is) => {
+  let svg = toDOM(circles);
+  let tree = parametricSVG(svg);
 
+  let container = document.createElement("div");
+  container.appendChild(svg);
 
-test.skip("Changes nothing when no attribute is parametric", (is) => {
-  is.end();
-  });
+  tree = parametricSVG(tree, {simple: 100});
 
+  is.ok
+    (  svg instanceof SVGSVGElement
+    && svg.parentNode == container
+    , "leaving the original SVG root intact and in place"
+    );
 
-test.skip("Creates a new attribute", (is) => {
-  is.end();
-  });
+  is.ok
+    ( tree instanceof VirtualTree
+    , "returning a VirtualTree"
+    );
 
+  is.equal
+    ( svg.getElementById("circle-simple").getAttributeNS(null, "r")
+    , "100"
+    , "updating the SVG DOM"
+    );
 
-test.skip("Updates an existing attribute", (is) => {
-  is.end();
-  });
-
-
-test.skip("Changes multiple attributes at once", (is) => {
   is.end();
   });
