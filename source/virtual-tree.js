@@ -37,19 +37,15 @@ export default class VirtualTree {
 
   _render () {
     // Call `.update()` on every ParametricAttribute,
+    let getParameter = (name) => this._parameters[name];
     this._parametricAttributes.forEach(parametricAttribute => {
       // passing relevant values from `this._parameters`.
       parametricAttribute.update(
-        ...parametricAttribute.parameterNames.map(this._getParameter)
+        ...parametricAttribute.parameterNames.map(getParameter)
         );
       });
 
     // Allow chaining.
     return this;
-    }
-
-
-  _getParameter (name) {
-    return this._parameters[name];
     }
   }
