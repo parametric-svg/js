@@ -1,17 +1,14 @@
-import tape from "tape-catch";
-
 import toDOM from "domify";
+
+import _test from "../_/test";
+let test = _test("parametricSVG");
+
 import parametricSVG from "../../source/parametric-svg";
 
 import circle from "../_/fixtures/circle";
 
-function test (title, ...rest) {
-  return tape("parametricSVG:  " + title, ...rest);
-  }
-test.__proto__ = tape;
 
-
-test("Works with an SVG document root", (is) => {
+test.skip("Works with an SVG document root", (is) => {
   let svg = toDOM(circle);
   parametricSVG(svg);
 
