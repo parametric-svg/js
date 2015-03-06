@@ -58,11 +58,6 @@ test("Errors when it should", (is) => {
     );
 
   is.ok
-    ( parseParametricValue("2\n+ 4").error
-    , "when the expression contains a newline"
-    );
-
-  is.ok
     ( parseParametricValue("var something").error
     , "with a statement"
     );

@@ -31,7 +31,10 @@ export default function parseParametricValue (value) {
 
   // Parse the `value` as a function – error if that fails.
   let func;
-  try {func = Function.apply(parameterNames.concat(value));}
+  try {func = Function.apply(null
+    , parameterNames
+      .concat("return (" + value + ");")
+    );}
   catch (error) {return {error};}
 
   // Return the function and parameter names.
