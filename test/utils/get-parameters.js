@@ -79,3 +79,29 @@ test("Works with different data types", (is) => {
 
   is.end();
   });
+
+
+test("Errors upon invalid values", (is) => {
+
+  is.ok
+    ( parameters["invalid-fails"].error
+    , "invalid JS"
+    );
+
+  is.ok
+    ( parameters["array-fails"].error
+    , "arrays"
+    );
+
+  is.ok
+    ( parameters["object-fails"].error
+    , "objects"
+    );
+
+  is.ok
+    ( parameters["null-fails"].error
+    , "nulls"
+    );
+
+  is.end();
+  });
