@@ -1,27 +1,55 @@
+import {SVG_NAMESPACE} from "./settings";
+import ParametricAttribute from "./parametric-attribute";
+
+
 /**
  * @class VirtualTree
  */
 
-export default class VirtualTree
-  { constructor(entryPoints, initial) {
-    let self = this;
+export default class VirtualTree {
 
-    // Extend the instance's properties with `initial`.
+  constructor (entryPoints, properties) {
+    // Extend the instance's properties with `properties`.
     Object.assign(this
-      , { parameters: {}
-        , elements: []
+      , { _parameters: {}
+        , _parametricAttributes: []
         }
-      , initial
+      , properties
       );
 
-    // Populate `this.elements`.
+    // Populate `this._parameters`.
+    let parametricAttributes = this._parametricAttributes;
+    let pushAttributeIfValid = (element) => (attribute) => {
+      let parametricAttribute = new ParametricAttribute(attribute, element);
+      if (!parametricAttribute.error) parametricAttributes.push(parametricAttribute);
+      };
     entryPoints.forEach(function recurse (element) {
-      self.elements.push(element);
+      if (element.namespaceURI === SVG_NAMESPACE) {
+        Array.from(element.attributes).forEach(pushAttributeIfValid(element));
+        }
       Array.from(element.childNodes).forEach(recurse);
       });
+
+    // Allow chaining.
+    return this;
     }
 
-  render () {
+
+  _render () {
+    // Call `.update()` on every ParametricAttribute,
+    this._parametricAttributes.forEach(parametricAttribute => {
+      // passing relevant values from `this._parameters`.
+      parametricAttribute.update(
+        ...parametricAttribute.parameterNames.map(this._getParameter)
+        );
+      });
+
+    // Allow chaining.
     return this;
+    }
+
+
+  _getParameter (name) {
+    return this._parameters[name];
     }
   }

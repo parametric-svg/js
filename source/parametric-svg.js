@@ -30,7 +30,7 @@ export default function parametricSVG (root, parameters={}) {
   if ((svgRoot = root) instanceof SVGSVGElement) {
     tree = new VirtualTree
       ( Array.from(svgRoot.childNodes)
-      , { parameters: Object.assign
+      , { _parameters: Object.assign
           ( getParameters(svgRoot)
           , parsedParameters
           )
@@ -55,7 +55,7 @@ export default function parametricSVG (root, parameters={}) {
   else if ((element = root) instanceof SVGElement) {
     tree = new VirtualTree
       ( [element]
-      , {parameters: parsedParameters}
+      , {_parameters: parsedParameters}
       );
     }
 
@@ -77,5 +77,5 @@ export default function parametricSVG (root, parameters={}) {
     + "The first argument must be an `SVGSVGElement`, `SVGElement`, or `VirtualTree`."
     );
 
-  return tree.render();
+  return tree._render();
   }
