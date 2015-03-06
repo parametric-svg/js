@@ -16,12 +16,15 @@ let attributes = Array.from(circle.attributes);
 let pAttributes = attributes.map(attribute => (
   new ParametricAttribute(attribute, circle)
   ));
+
 let vAttributeHash = asObject(
   attributes.map((attribute, index) => (
     { key: attribute.name
     , value: pAttributes[index]
     }))
   );
+let parametricR = vAttributeHash["parametric:r"];
+let parametricFill = vAttributeHash["parametric:fill"];
 let expectedPAttributes = 2;
 
 
@@ -48,21 +51,7 @@ test("Returns what it should return", (is) => {
   });
 
 
-test("Does what a ParametricAttribute should do", (is) => {
-  let parametricR = vAttributeHash["parametric:r"];
-  let parametricFill = vAttributeHash["parametric:fill"];
-
-  is.equal
-    ( parametricR.counterpart.name
-    , "r"
-    , "finding its counterpart static attribute"
-    );
-
-  is.equal
-    ( parametricFill.counterpart
-    , null
-    , "...or saying `null` otherwise"
-    );
+test("Parses the DOM", (is) => {
 
   is.deepEqual
     ( parametricR.parameterNames
