@@ -1,9 +1,15 @@
 import virtualTree from "./virtual-tree";
 import getParameters from "./utils/get-parameters";
+import validateParameter from "./utils/validate-parameter";
 
 
 export default function parametricSVG (root, parameters={}) {
-  let tree, svgRoot;
+  let tree, svgRoot, element;
+
+  let parsedParameters = {};
+  for (let parameter in parameters) if (parameters.hasOwnProperty(parameter)) {
+    parsedParameters[parameter] = validateParameter(parameters[parameter]);
+    }
 
    /**
     * Parse and render all elements within the `svgRoot`. Defaults set with `<ref>` elements
@@ -24,7 +30,11 @@ export default function parametricSVG (root, parameters={}) {
   if ((svgRoot = root) instanceof SVGSVGElement) {
     tree = new virtualTree
       ( Array.from(svgRoot.childNodes)
-      , getParameters(svgRoot)
+      , { parameters: Object.assign
+          ( getParameters(svgRoot)
+          , parsedParameters
+          )
+        }
       );
     }
 
