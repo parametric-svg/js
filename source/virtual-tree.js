@@ -7,7 +7,7 @@ let getParameter = (virtualTree) => function getParameter (name) {
   if (!parameter || parameter.error) {
     warn
       ( `Attempting to use the parameter \`${name}\`. `
-      + parameter.error || "It hasn't been defined."
+      + ((parameter && parameter.error) || "It hasn't been declared.")
       );
     return;
     }
