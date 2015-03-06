@@ -2,6 +2,8 @@ import "babel/polyfill";
 import asObject from "as/object";
 import evalExpression from "eval-expression";
 
+import validateParameter from "./validate-parameter";
+
 import
   { PARAMETRIC_NAMESPACE, PARAMETRIC_NAMESPACE_PREFIX
   , SVG_NAMESPACE, SVG_NAMESPACE_PREFIX
@@ -22,14 +24,21 @@ function namespaceParameters (svgRoot, namespace, prefix=null) {
 
   // Map the keys and values to an object and return.
   return asObject(elements.map(element => {
-    var value, error;
-    var rawValue =
+    let value, error, validated;
+    let rawValue =
       (  element.getAttribute("default")
       || (textContent = element.firstChild) && textContent.nodeValue
       || "null"
       );
-    try {value = evalExpression(rawValue);}
+
+    try {
+      validated = validateParameter(evalExpression(rawValue));
+      }
     catch (e) {error = e;}
+    if (!error) {
+      value = validated.value;
+      error = validated.error;
+      }
 
     return (
       { key: element.getAttribute("param")
