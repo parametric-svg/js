@@ -3,6 +3,7 @@ import asObject from "as/object";
 import evalExpression from "eval-expression";
 
 import validateParameter from "./validate-parameter";
+import warn from "./warn";
 
 import
   { PARAMETRIC_NAMESPACE, PARAMETRIC_NAMESPACE_PREFIX
@@ -25,6 +26,7 @@ function namespaceParameters (svgRoot, namespace, prefix=null) {
   // Map the keys and values to an object and return.
   return asObject(elements.map(element => {
     let value, error, validated;
+    let key = element.getAttribute("param");
     let rawValue =
       (  element.getAttribute("default")
       || (textContent = element.firstChild) && textContent.nodeValue
@@ -39,9 +41,13 @@ function namespaceParameters (svgRoot, namespace, prefix=null) {
       value = validated.value;
       error = validated.error;
       }
+    if (error) warn
+      ( `Error while parsing \`<ref param="${key}">\`.`
+      , error
+      );
 
     return (
-      { key: element.getAttribute("param")
+      { key
       , value: {error, value}
       });
     }));
