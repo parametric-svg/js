@@ -4,6 +4,7 @@
 # - Built files,
 /dist.es5/
 /dist.es6/
+/test/runner/bundle.js
 
 # - All files and directories starting with "#",
 \#*

@@ -5,6 +5,7 @@
 , "scripts":
   { "develop": "nodangel --exec npm test"
   , "test": "browserify test.js --transform babelify | tape-run --browser=phantom | tap-spec"
+  , "test-in-browser": "browserify test.js --debug --transform babelify > test/runner/bundle.js && echo 'Tests are ready. Navigate your browser to http://localhost:9001 to run them and open the browser console to see the results.\\n' && cd test/runner && http-server --p 9001"
   , "prepublish": "gulp build"
   }
 
@@ -15,6 +16,7 @@
 , "devDependencies":
   { "babelify": "5.0.3"
   , "browserify": "8.1.3"
+  , "http-server": "0.7.5"
   , "nodangel": "1.3.8"
   , "tap-spec": "2.2.1"
   , "tape-run": "0.3.0"
