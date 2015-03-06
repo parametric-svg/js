@@ -11,7 +11,7 @@ import ParametricAttribute from "../source/parametric-attribute";
 
 let svg = toDOM(circles);
 
-let circle = svg.getElementById("circle-factor-plus");
+let circle = svg.getElementById("circle-factor-plus-fill");
 let attributes = Array.from(circle.attributes);
 let pAttributes = attributes.map(attribute => (
   new ParametricAttribute(attribute, circle)
@@ -22,6 +22,7 @@ let vAttributeHash = asObject(
     , value: pAttributes[index]
     }))
   );
+let expectedPAttributes = 2;
 
 
 test("Returns what it should return", (is) => {
@@ -32,15 +33,15 @@ test("Returns what it should return", (is) => {
       && !pAttribute.error
       )))
       .length
-    , 2
-    , "returning a ParametricAttribute for every parametric attribute"
+    , expectedPAttributes
+    , "a ParametricAttribute for every parametric attribute"
     );
 
   is.equal
     ( pAttributes.filter(pAttribute => pAttribute.error)
       .length
-    , pAttributes.length - 1
-    , "erroring otherwise"
+    , pAttributes.length - expectedPAttributes
+    , "otherwise an error"
     );
 
   is.end();
@@ -60,7 +61,7 @@ test("Does what a ParametricAttribute should do", (is) => {
   is.equal
     ( parametricFill.counterpart
     , null
-    , "…or saying `null` otherwise"
+    , "...or saying `null` otherwise"
     );
 
   is.deepEqual
@@ -70,14 +71,16 @@ test("Does what a ParametricAttribute should do", (is) => {
     );
 
   is.equal
-    ( parametricFill.func("green")
-    , "green"
+    ( parametricFill.func("blue")
+    , "blue"
     , "with a simple attribute replacement"
     );
 
   is.equal
-    ( parametricR.func(3, 2)
-    , 3 * 3 + 2
+    ( parametricR.func(5, 6)
+    , 2 * 5 + 6
     , "with an attribute equation"
     );
+
+  is.end();
   });
