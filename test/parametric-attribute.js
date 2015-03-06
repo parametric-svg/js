@@ -4,6 +4,7 @@ import asObject from "as/object";
 import _test from "./_/test";
 let test = _test("parametric-attribute");
 
+import {INITIAL_R} from "./_/fixtures/circles/data";
 import circles from "./_/fixtures/circles";
 
 import ParametricAttribute from "../source/parametric-attribute";
@@ -75,7 +76,7 @@ test("Updates the DOM", (is) => {
   parametricR.update(5, 6);
   is.equal
     ( circle.getAttributeNS(null, parametricR.name)
-    , "" + (2 * 5 + 6)
+    , "" + (INITIAL_R * 5 + 6)
     , "through an equation"
     );
 
