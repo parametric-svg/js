@@ -1,4 +1,4 @@
-import virtualTree from "./virtual-tree";
+import VirtualTree from "./virtual-tree";
 import getParameters from "./utils/get-parameters";
 import validateParameter from "./utils/validate-parameter";
 
@@ -28,7 +28,7 @@ export default function parametricSVG (root, parameters={}) {
     * @function parametricSVG
     */
   if ((svgRoot = root) instanceof SVGSVGElement) {
-    tree = new virtualTree
+    tree = new VirtualTree
       ( Array.from(svgRoot.childNodes)
       , { parameters: Object.assign
           ( getParameters(svgRoot)
@@ -73,4 +73,9 @@ export default function parametricSVG (root, parameters={}) {
     *
     * @function parametricSVG
     */
+  else if (!((tree = root) instanceof VirtualTree)) throw new TypeError("parametricSVG: "
+    + "The first argument must be an `SVGSVGElement`, `SVGElement`, or `VirtualTree`."
+    );
+
+  return tree.render();
   }

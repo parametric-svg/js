@@ -20,4 +20,8 @@ export default class VirtualTree
       Array.from(element.childNodes).forEach(recurse);
       });
     }
+
+  render () {
+    return this;
+    }
   }
