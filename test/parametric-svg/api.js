@@ -6,11 +6,11 @@ let test = _test("parametricSVG");
 import parametricSVG from "../../source/parametric-svg";
 import VirtualTree from "../../source/virtual-tree";
 
-import circle from "../_/fixtures/circle";
+import circles from "../_/fixtures/circles";
 
 
 test("Works with an SVG document root", (is) => {
-  let svg = toDOM(circle);
+  let svg = toDOM(circles);
   let tree = parametricSVG(svg);
 
   is.ok

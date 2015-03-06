@@ -9,12 +9,15 @@ export default
     </defs>
   <circle id="circle-radius"
     parametric:r="radius" r="3"
+    x="0"
     />
   <circle id="circle-factor"
     parametric:r="3 * factor" r="3"
+    x="10"
     />
   <circle id="circle-factor-plus"
     parametric:r="2 * factor + extra" r="3"
+    x="20"
     />
   </svg>
 `;
