@@ -9,7 +9,7 @@ import VirtualTree from "../../source/virtual-tree";
 import circles from "../_/fixtures/circles";
 
 
-test("Works with an SVG document root", (is) => {
+test.skip("Works with an SVG document root", (is) => {
   let svg = toDOM(circles);
   let tree = parametricSVG(svg);
 
