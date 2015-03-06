@@ -9,7 +9,7 @@ import VirtualTree from "../../source/virtual-tree";
 import circles from "../_/fixtures/circles";
 
 
-test.skip("Works with an SVG document root", (is) => {
+test("Works with an SVG document root", (is) => {
   let svg = toDOM(circles);
   let tree = parametricSVG(svg);
 
@@ -22,11 +22,6 @@ test.skip("Works with an SVG document root", (is) => {
     ( tree instanceof VirtualTree
     , "returning a VirtualTree"
     );
-
-  // is.equal
-  //   ( svg.getElementById("circle-radius").getAttribute("r")
-  //   , "6"
-  //   );
 
   is.end();
   });
