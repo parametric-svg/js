@@ -6,6 +6,9 @@ import validateParameter from "./utils/validate-parameter";
 export default function parametricSVG (root, parameters={}) {
   let tree, svgRoot, element;
 
+  if (!parameters || typeof parameters != "object") throw new TypeError("parametricSVG: "
+    + "If you pass `parameters`, it must be an object."
+    );
   let parsedParameters = {};
   for (let parameter in parameters) if (parameters.hasOwnProperty(parameter)) {
     parsedParameters[parameter] = validateParameter(parameters[parameter]);
@@ -73,7 +76,11 @@ export default function parametricSVG (root, parameters={}) {
     *
     * @function parametricSVG
     */
-  else if (!((tree = root) instanceof VirtualTree)) throw new TypeError("parametricSVG: "
+  else if (((tree = root) instanceof VirtualTree)) {
+    Object.assign(tree._parameters, parsedParameters);
+    }
+
+  else throw new TypeError("parametricSVG: "
     + "The first argument must be an `SVGSVGElement`, `SVGElement`, or `VirtualTree`."
     );
 
