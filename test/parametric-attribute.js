@@ -59,16 +59,24 @@ test("Parses the DOM", (is) => {
     , "spotting parameters it depends on"
     );
 
+  is.end();
+  });
+
+
+test("Updates the DOM", (is) => {
+
+  parametricFill.update("blue");
   is.equal
-    ( parametricFill.func("blue")
+    ( circle.getAttributeNS(null, parametricFill.name)
     , "blue"
-    , "with a simple attribute replacement"
+    , "through simple attribute replacement"
     );
 
+  parametricR.update(5, 6);
   is.equal
-    ( parametricR.func(5, 6)
-    , 2 * 5 + 6
-    , "with an attribute equation"
+    ( circle.getAttributeNS(null, parametricR.name)
+    , "" + (2 * 5 + 6)
+    , "through an equation"
     );
 
   is.end();

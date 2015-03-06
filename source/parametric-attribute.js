@@ -30,4 +30,12 @@ export default class ParametricAttribute {
       , func: parametricFunction.func
       });
     }
+
+
+  update (...args) {
+    this.element.setAttributeNS(null, this.name
+      , this.func(...args)
+      );
+    return this;
+    }
   }
