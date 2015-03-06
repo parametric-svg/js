@@ -5,22 +5,27 @@ import parseParametricValue from "./utils/parse-parametric-value";
 
 export default class ParametricAttribute {
   constructor (attribute, element) {
-    // Return `.invalid` if the `attribute` doesn't belong to the `element`'s namespace.
-    if (attribute.namespaceURI !== null) return {invalid: true};
-
-    // Find the paired parametric attribute.
     let attributeName = attribute.localName;
-    let parametricAttribute =
-      (  element.getAttributeNodeNS(PARAMETRIC_NAMESPACE, attributeName)
-      || element.getAttributeNode(PARAMETRIC_NAMESPACE_PREFIX + ":" + attributeName)
+
+    // Return `.invalid` if the `attribute` doesn't belong to the `element`'s namespace.
+    if (attribute.namespaceURI !== PARAMETRIC_NAMESPACE) {
+      let attributeNameParts;
+      if (  (attributeNameParts = attributeName.split(":")).length == 2
+         && attributeNameParts[0] == PARAMETRIC_NAMESPACE_PREFIX
+         ) attributeName = attributeNameParts[1];
+      else return {error: new Error("Not a parametric attribute.")};
+      }
+
+    // Find the counterpart static attribute.
+    console.log(element);
+    let counterpart =
+      (  element.getAttributeNodeNS && element.getAttributeNodeNS(null, attributeName)
+      || element.getAttribute(attributeName)
       || null
       );
 
-    // Return `.static` if no pair has been found.
-    if (!parametricAttribute) return {static: true};
-
     // Return `.error` if the parametric attribute is invalid.
-    let parametricFunction = parseParametricValue(parametricAttribute.value);
+    let parametricFunction = parseParametricValue(attribute.value);
     { let error;
       if ((error = parametricFunction.error)) return {error};
     }
@@ -28,6 +33,7 @@ export default class ParametricAttribute {
     // Otherwise all is well. Populate the properties.
     return Object.assign(this,
       { attribute
+      , counterpart
       , parameterNames: parametricFunction.parameterNames
       , func: parametricFunction.func
       });
