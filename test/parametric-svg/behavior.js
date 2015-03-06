@@ -5,11 +5,13 @@ let test = _test("parametric-svg behavior");
 
 import {SIMPLE, FACTOR, PLUS, FILL, OK_FILL, PERCENT, INITIAL_R} from "../_/fixtures/circles/data";
 import circlesSource from "../_/fixtures/circles";
+import invalidSource from "../_/fixtures/invalid";
 import staticSource from "../_/fixtures/static";
 
 import parametricSVG from "../../source/parametric-svg";
 
 let circlesDOM = toDOM(circlesSource);
+let invalidDOM = toDOM(invalidSource);
 let staticDOM = toDOM(staticSource);
 
 
@@ -88,5 +90,53 @@ test("Knows logic", is => {
     , "" + OK_FILL
     , "like a boss"
     );
+  is.end();
+  });
+
+
+test("Warns, but succeeds in edge cases", is => {
+  let warningCount = 0;
+  console.originalWarn = console.warn;
+  console.warn = () => {
+    warningCount++;
+    };
+
+  parametricSVG(invalidDOM);
+  is.equal
+    ( warningCount
+    , 5
+    , "once for every invalid `<ref>`, once for every funny parametric attribute"
+    );
+  warningCount = 0;
+
+  let circleUndefined;
+  parametricSVG((circleUndefined = invalidDOM.getElementById("circle-undefined")), {});
+  is.equal
+    ( warningCount, 1
+    , "when it encounters undefined"
+    );
+  is.equal
+    ( circleUndefined.getAttribute("r")
+    , "undefined"
+    , '- evaluating to "undefined"'
+    );
+  warningCount = 0;
+
+  let circleArray;
+  parametricSVG((circleArray = invalidDOM.getElementById("circle-array"))
+    , {array: []}
+    );
+  is.equal
+    ( warningCount, 1
+    , "when it encounters an array"
+    );
+  is.equal
+    ( circleArray.getAttribute("r")
+    , "undefined"
+    , '- evaluating to "undefined"'
+    );
+  warningCount = 0;
+
+  console.warn = console.originalWarn;
   is.end();
   });
