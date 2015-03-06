@@ -22,7 +22,7 @@ export default
     />
   <circle id="circle-factor-plus-fill"
     parametric:r="2 * factor + plus" r="3"
-    parametric:fill="red"
+    parametric:fill="fill"
     x="20"
     />
   </svg>
