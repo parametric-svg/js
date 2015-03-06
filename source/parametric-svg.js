@@ -14,6 +14,7 @@ export default function parametricSVG (root, parameters={}) {
     parsedParameters[parameter] = validateParameter(parameters[parameter]);
     }
 
+
    /**
     * Parse and render all elements within the `svgRoot`. Defaults set with `<ref>` elements
     * will be used for calculation, unless you override them with `parameters`.
