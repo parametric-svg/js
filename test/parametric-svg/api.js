@@ -9,6 +9,27 @@ import VirtualTree from "../../source/virtual-tree";
 import circles from "../_/fixtures/circles";
 
 
+test("Explodes when things go wrong", (is) => {
+  is.plan(2);
+
+  try {parametricSVG(/anything/);}
+  catch (error) {is.equal
+    ( error && error.constructor
+    , TypeError
+    , "throwing a TypeError when `root` is wrong"
+    );}
+
+  try {parametricSVG(toDOM(circles), "anything");}
+  catch (error) {is.equal
+    ( error && error.constructor
+    , TypeError
+    , "throwing a TypeError when `parameters` is not an object"
+    );}
+
+  is.end();
+  });
+
+
 test("Works with an SVG document root", (is) => {
   let svg = toDOM(circles);
   let tree = parametricSVG(svg);
