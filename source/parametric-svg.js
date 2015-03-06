@@ -6,9 +6,8 @@ export default function parametricSVG (root, parameters={}) {
   let tree, svgRoot;
 
    /**
-    * @function parametricSVG
-    *   Parse and render all elements within the `svgRoot`. Defaults set with `<ref>` elements
-    *   will be used for calculation, unless you override them with `parameters`.
+    * Parse and render all elements within the `svgRoot`. Defaults set with `<ref>` elements
+    * will be used for calculation, unless you override them with `parameters`.
     *
     * @param  {SVGSVGElement}  svgRoot
     *   An `<svg>` element.
@@ -19,6 +18,8 @@ export default function parametricSVG (root, parameters={}) {
     *
     * @returns {VirtualTree}
     *   A cached virtual DOM tree for lightning-fast redraws.
+    *
+    * @function parametricSVG
     */
   if ((svgRoot = root) instanceof SVGSVGElement) {
     tree = new virtualTree
@@ -29,8 +30,7 @@ export default function parametricSVG (root, parameters={}) {
 
 
    /**
-    * @function parametricSVG
-    *   Pass any SVG node (like `<circle>`) to parse and render the node and all its descendants.
+    * Pass any SVG node (like `<circle>`) to parse and render the node and all its descendants.
     *
     * @param  {SVGElement}  element
     *
@@ -39,12 +39,19 @@ export default function parametricSVG (root, parameters={}) {
     *
     * @returns {VirtualTree}
     *   A cached virtual DOM tree for lightning-fast redraws.
+    *
+    * @function parametricSVG
     */
+  else if ((element = root) instanceof SVGElement) {
+    tree = new VirtualTree
+      ( [element]
+      , {parameters: parsedParameters}
+      );
+    }
 
    /**
-    * @function parametricSVG
-    *   Pass a cached `VirtualTree` to render the tree without reparsing any DOM. This is the fastest
-    *   option.
+    * Pass a cached `VirtualTree` to render the tree without reparsing any DOM. This is the fastest
+    * option.
     *
     * @param  {VirtualTree}  virtualTree
     *
@@ -53,5 +60,7 @@ export default function parametricSVG (root, parameters={}) {
     *
     * @returns {VirtualTree}
     *   A cached virtual DOM tree for lightning-fast redraws.
+    *
+    * @function parametricSVG
     */
   }
