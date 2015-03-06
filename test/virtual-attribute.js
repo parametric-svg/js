@@ -2,7 +2,7 @@ import toDOM from "domify";
 import asObject from "as/object";
 
 import _test from "./_/test";
-let test = _test("VirtualAttribute");
+let test = _test("virtual-attribute");
 
 import circles from "./_/fixtures/circles";
 

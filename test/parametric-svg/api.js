@@ -1,7 +1,7 @@
 import toDOM from "domify";
 
 import _test from "../_/test";
-let test = _test("parametricSVG");
+let test = _test("parametric-svg API");
 
 import parametricSVG from "../../source/parametric-svg";
 import VirtualTree from "../../source/virtual-tree";

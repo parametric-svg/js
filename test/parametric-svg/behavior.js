@@ -1,9 +1,5 @@
-import tape from "tape-catch";
-
-function test (title, ...rest) {
-  return tape("parametricSVG:  " + title, ...rest);
-  }
-test.__proto__ = tape;
+import _test from "../_/test";
+let test = _test("parametric-svg behavior");
 
 
 test.skip("Replaces simple values", (is) => {

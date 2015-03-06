@@ -1,7 +1,7 @@
 import domify from "domify";
 
 import _test from "../_/test";
-let test = _test("utils/getParameters");
+let test = _test("utils/get-parameters");
 
 import getParameters from "../../source/utils/get-parameters";
 

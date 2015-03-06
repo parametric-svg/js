@@ -1,5 +1,5 @@
 import _test from "../_/test";
-let test = _test("utils/parseParametricValue");
+let test = _test("utils/parse-parametric-value");
 
 import parseParametricValue from "../../source/utils/parse-parametric-value";
 

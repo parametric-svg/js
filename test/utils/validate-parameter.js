@@ -1,5 +1,5 @@
 import _test from "../_/test";
-let test = _test("utils/validateParameter");
+let test = _test("utils/validate-parameter");
 
 import validateParameter from "../../source/utils/validate-parameter";
 

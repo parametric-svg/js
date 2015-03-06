@@ -1,5 +1,5 @@
 import _test from "./_/test";
-let test = _test("VirtualTree");
+let test = _test("virtual-tree");
 
 
 test.skip("Is converted to DOM on .toDOM()", (is) => {
