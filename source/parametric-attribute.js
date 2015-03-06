@@ -3,7 +3,7 @@ import {PARAMETRIC_NAMESPACE, PARAMETRIC_NAMESPACE_PREFIX} from "./settings";
 import parseParametricValue from "./utils/parse-parametric-value";
 
 
-export default class VirtualAttribute {
+export default class ParametricAttribute {
   constructor (attribute, element) {
     // Return `.invalid` if the `attribute` doesn't belong to the `element`'s namespace.
     if (attribute.namespaceURI !== null) return {invalid: true};

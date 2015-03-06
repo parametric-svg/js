@@ -2,24 +2,24 @@ import toDOM from "domify";
 import asObject from "as/object";
 
 import _test from "./_/test";
-let test = _test("virtual-attribute");
+let test = _test("parametric-attribute");
 
 import circles from "./_/fixtures/circles";
 
-import VirtualAttribute from "../source/virtual-attribute";
+import ParametricAttribute from "../source/parametric-attribute";
 
 
 let svg = toDOM(circles);
 
 let circle = svg.getElementById("circle-factor-plus");
 let attributes = Array.from(circle.attributes);
-let vAttributeList = attributes.map(attribute => (
-  new VirtualAttribute(attribute, circle)
+let pAttributes = attributes.map(attribute => (
+  new ParametricAttribute(attribute, circle)
   ));
-let vAttributes = asObject(
+let vAttributeHash = asObject(
   attributes.map((attribute, index) => (
     { key: attribute.name
-    , value: vAttributeList[index]
+    , value: pAttributes[index]
     }))
   );
 
@@ -27,19 +27,19 @@ let vAttributes = asObject(
 test("Returns what it should return", (is) => {
 
   is.equal
-    ( vAttributeList.filter(vAttribute => (
-      (  vAttribute instanceof VirtualAttribute
-      && !vAttribute.error
+    ( pAttributes.filter(pAttribute => (
+      (  pAttribute instanceof ParametricAttribute
+      && !pAttribute.error
       )))
       .length
     , 2
-    , "returning a VirtualAttribute for every parametric attribute"
+    , "returning a ParametricAttribute for every parametric attribute"
     );
 
   is.equal
-    ( vAttributeList.filter(vAttribute => vAttribute.error)
+    ( pAttributes.filter(pAttribute => pAttribute.error)
       .length
-    , vAttributeList.length - 1
+    , pAttributes.length - 1
     , "erroring otherwise"
     );
 
@@ -47,14 +47,14 @@ test("Returns what it should return", (is) => {
   });
 
 
-test("Does what it should do", (is) => {
-  let parametricR = vAttributes["parametric:r"];
-  let parametricFill = vAttributes["parametric:fill"];
+test("Does what a ParametricAttribute should do", (is) => {
+  let parametricR = vAttributeHash["parametric:r"];
+  let parametricFill = vAttributeHash["parametric:fill"];
 
   is.equal
     ( parametricR.counterpart.name
     , "r"
-    , "finding its pair static attribute"
+    , "finding its counterpart static attribute"
     );
 
   is.equal

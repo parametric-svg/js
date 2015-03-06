@@ -3,4 +3,4 @@ import "babel/polyfill";
 import "./test/parametric-svg";
 import "./test/utils";
 import "./test/virtual-tree";
-import "./test/virtual-attribute";
+import "./test/parametric-attribute";
