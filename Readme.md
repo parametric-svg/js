@@ -30,48 +30,48 @@ API
 ---
 
 
-### `parametricSVG (root, [parameters])`
+### `parametricSVG(svgRoot, [parameters])`
 
-
+Parse and render all elements within the svgRoot. Defaults set with &amp;lt;ref&amp;gt; elements will be used for calculation, unless you override them with parameters.
 
 ### Parameters
 
-| parameter      | type          | description                                                                                                         |
-| -------------- | ------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `root`         | SVGSVGElement |   Pass an &amp;lt;svg&amp;gt; element to parse and render all elements within it, including parameters.                     |
-| `[parameters]` | Object        | _optional:_   Supply a hash of additional parameters. They&amp;#39;ll extend and override those set with &amp;lt;param&amp;gt;. |
+| parameter      | type          | description                                                                                                              |
+| -------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `svgRoot`      | SVGSVGElement |   An &amp;lt;svg&amp;gt; element.                                                                                                |
+| `[parameters]` | Object        | _optional:_   A hash of additional parameters. They&amp;#39;ll extend and override defaults set with &amp;lt;ref&amp;gt;   elements. |
 
 
 
 **Returns** `VirtualTree`,   A cached virtual DOM tree for lightning-fast redraws.
 
 
-### `parametricSVG (element, parameters)`
+### `parametricSVG(element, parameters)`
 
-
+Pass any SVG node (like &amp;lt;circle&amp;gt;) to parse and render the node and all its descendants.
 
 ### Parameters
 
-| parameter    | type       | description                                                               |
-| ------------ | ---------- | ------------------------------------------------------------------------- |
-| `element`    | SVGElement |   Pass any SVG node to parse and render the node and all its descendants. |
-| `parameters` | Object     |   Supply a hash of parameters.                                            |
+| parameter    | type       | description             |
+| ------------ | ---------- | ----------------------- |
+| `element`    | SVGElement |                         |
+| `parameters` | Object     |   A hash of parameters. |
 
 
 
 **Returns** `VirtualTree`,   A cached virtual DOM tree for lightning-fast redraws.
 
 
-### `parametricSVG (virtualTree, [parameters])`
+### `parametricSVG(virtualTree, [parameters])`
 
-
+Pass a cached VirtualTree to render the tree without reparsing any DOM. This is the fastest option.
 
 ### Parameters
 
-| parameter      | type        | description                                                                                           |
-| -------------- | ----------- | ----------------------------------------------------------------------------------------------------- |
-| `virtualTree`  | VirtualTree |   Pass a cached tree to redraw the tree without reparsing DOM. This is the fastest option.            |
-| `[parameters]` | Object      | _optional:_   Supply a hash of additional parameters. They&amp;#39;ll extend and replace the cached ones. |
+| parameter      | type        | description                                                                                       |
+| -------------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| `virtualTree`  | VirtualTree |                                                                                                   |
+| `[parameters]` | Object      | _optional:_   Supply a hash of additional parameters. They&amp;#39;ll extend and replace cached ones. |
 
 
 
