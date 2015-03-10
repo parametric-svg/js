@@ -11,6 +11,9 @@
 
 , "dependencies":
   { "acorn": "0.12.0"
+  , "as": "0.4.1"
+  , "babel": "4.4.3"
+  , "eval-expression": "0.1.1"
   }
 
 , "devDependencies":
@@ -21,11 +24,8 @@
   , "tap-spec": "2.2.1"
   , "tape-run": "0.3.0"
 
-  , "as": "0.4.1"
   , "async": "0.9.0"
-  , "babel": "4.4.3"
   , "domify": "1.3.1"
-  , "eval-expression": "0.1.1"
   , "tape-catch": "1.0.4"
 
   , "gulp": "3.8.11"
@@ -37,7 +37,7 @@
   , "gulp-rename": "1.2.0"
   }
 
-, "main": "/dist.es5/parametric-svg.js"
+, "main": "dist.es5/parametric-svg.js"
 , "files":
   [ "/dist.es5/"
   , "/dist.es6/"
