@@ -6,7 +6,7 @@
 
 
 <h1 align="center">
-  <img alt="parametric.svg" src="https://rawgit.com/parametric-svg/parametric.svg/master/assets/logo.svg" />
+  <img alt="parametric.svg" src="https://cdn.rawgit.com/parametric-svg/identity/v1.0.0/logo/basic.svg" />
 </h1>
 
 **Parametric 2D graphics in the browser. With pure SVG.**
@@ -76,6 +76,11 @@ Pass a cached VirtualTree to render the tree without reparsing any DOM. This is 
 
 
 **Returns** `VirtualTree`,   A cached virtual DOM tree for lightning-fast redraws.
+
+
+### `undefined`
+
+
 
 
 
