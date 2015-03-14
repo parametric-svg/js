@@ -106,7 +106,7 @@ test("Removes an attribute upon null", is => {
   });
 
 
-test("Warns, but succeeds in edge cases", is => {
+test("Handles edge cases", is => {
   let warningCount = 0;
   console.originalWarn = console.warn;
   console.warn = () => {
@@ -117,7 +117,7 @@ test("Warns, but succeeds in edge cases", is => {
   is.equal
     ( warningCount
     , 5
-    , "once for every invalid `<ref>`, once for every funny parametric attribute"
+    , "warning once for every invalid `<ref>`, and once for every queer parametric attribute"
     );
   warningCount = 0;
 
@@ -125,12 +125,12 @@ test("Warns, but succeeds in edge cases", is => {
   parametricSVG((circleUndefined = invalidDOM.getElementById("circle-undefined")), {});
   is.equal
     ( warningCount, 1
-    , "when it encounters undefined"
+    , "warning about a non-declared parameter reference"
     );
   is.equal
     ( circleUndefined.getAttribute("r")
-    , "undefined"
-    , '- evaluating to "undefined"'
+    , "10"
+    , "- leaving the parameter intact"
     );
   warningCount = 0;
 
@@ -140,12 +140,12 @@ test("Warns, but succeeds in edge cases", is => {
     );
   is.equal
     ( warningCount, 1
-    , "when it encounters an array"
+    , "warning when it encounters an array"
     );
   is.equal
     ( circleArray.getAttribute("r")
-    , "undefined"
-    , '- evaluating to "undefined"'
+    , "10"
+    , "- leaving the parameter intact"
     );
   warningCount = 0;
 

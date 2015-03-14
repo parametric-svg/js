@@ -43,7 +43,7 @@ export default class ParametricAttribute {
   update (...args) {
     let {element, name} = this;
     let result = this.func(...args);
-    if (result !== null) {
+    if (result != null) {
       element.setAttributeNS(null, name, result);
       }
     else if (result === null) {
