@@ -1,6 +1,9 @@
+import {PARAMETRIC_NAMESPACE} from "../../../source/settings";
+
+
 export default
 `<svg version="1.1"
-  xmlns:parametric="https://github.com/parametric-svg/spec/tree/0.1"
+  xmlns:parametric="${PARAMETRIC_NAMESPACE}"
   >
   <defs>
     <parametric:ref param="array" default="[]" />

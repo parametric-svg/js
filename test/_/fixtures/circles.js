@@ -1,9 +1,10 @@
 import {SIMPLE, FACTOR, PLUS, FILL, OK_FILL, PERCENT, INITIAL_R, INTERVAL} from "./circles/data";
+import {PARAMETRIC_NAMESPACE} from "../../../source/settings";
 
 
 export default
 `<svg version="1.1"
-  xmlns:parametric="https://github.com/parametric-svg/spec/tree/0.1"
+  xmlns:parametric="${PARAMETRIC_NAMESPACE}"
   >
   <defs>
     <parametric:ref param="simple" default="${SIMPLE}" />

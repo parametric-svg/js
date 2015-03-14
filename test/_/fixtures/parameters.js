@@ -1,7 +1,10 @@
+import {PARAMETRIC_NAMESPACE} from "../../../source/settings";
+
+
 export default
 `<svg version="1.1"
   xmlns="http://www.w3.org/2000/svg"
-  xmlns:parametric="https://parametric-svg.github.io/v0"
+  xmlns:parametric="${PARAMETRIC_NAMESPACE}"
   >
   <defs>
     <ref param="native" default="'works'" />
