@@ -29,6 +29,7 @@ export default
   <circle id="circle-factor-plus-fill"
     parametric:r="${INITIAL_R} * factor + plus" r="${INITIAL_R}"
     parametric:fill="fill"
+    parametric:style="&^invalid" style="stroke:#000"
     cx="${4 * INTERVAL}" cy="50"
     />
   <circle id="circle-fill"

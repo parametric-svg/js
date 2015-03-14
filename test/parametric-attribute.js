@@ -14,6 +14,11 @@ let svg = toDOM(circles);
 
 let circle = svg.getElementById("circle-factor-plus-fill");
 let attributes = Array.from(circle.attributes);
+let attributeHash = asObject(attributes.map(attribute => (
+  { key: attribute.name
+  , value: attribute
+  }
+  )));
 let pAttributes = attributes.map(attribute => (
   new ParametricAttribute(attribute, circle)
   ));
@@ -80,5 +85,24 @@ test("Updates the DOM", (is) => {
     , "through an equation"
     );
 
+  is.end();
+  });
+
+
+test("Handles invalid attributes", is => {
+  is.plan(2);
+
+  let originalWarn = console.warn;
+  console.warn = () => is.pass
+    ( "printing a helpful warning"
+    );
+
+  let attribute = new ParametricAttribute(attributeHash["parametric:style"]);
+  is.ok
+    ( attribute.error instanceof SyntaxError
+    , "returning a SyntaxError"
+    );
+
+  console.warn = originalWarn;
   is.end();
   });
