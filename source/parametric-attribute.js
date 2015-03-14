@@ -1,6 +1,7 @@
 import {PARAMETRIC_NAMESPACE, PARAMETRIC_NAMESPACE_PREFIX} from "./settings";
 
 import parseParametricValue from "./utils/parse-parametric-value";
+import warn from "./utils/warn";
 
 
 export default class ParametricAttribute {
@@ -16,10 +17,17 @@ export default class ParametricAttribute {
       else return {error: new Error("Not a parametric attribute.")};
       }
 
-    // Error if the parametric attribute is invalid.
+    // Error and warn if the parametric attribute is invalid.
     let parametricFunction = parseParametricValue(attribute.value);
     { let error;
-      if ((error = parametricFunction.error)) return {error};
+      if ((error = parametricFunction.error)) {
+        warn
+          ( `Invalid attribute \`parametric:${name}\`.\n`
+          + "Element:", element, "\n"
+          + "Error:", error
+          );
+        return {error};
+        }
     }
 
     // Otherwise all is well. Populate the properties.

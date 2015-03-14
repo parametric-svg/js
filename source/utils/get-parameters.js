@@ -42,8 +42,9 @@ function namespaceParameters (svgRoot, namespace, prefix=null) {
       error = validated.error;
       }
     if (error) warn
-      ( `Error while parsing \`<ref param="${key}">\`.`
-      , error
+      ( "Error while parsing default parameter.\n"
+      + "Element:", element, "\n"
+      + "Error:", error
       );
 
     return (
