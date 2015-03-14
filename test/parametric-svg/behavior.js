@@ -94,6 +94,18 @@ test("Knows logic", is => {
   });
 
 
+test("Removes an attribute upon null", is => {
+  let circle = circlesDOM.getElementById("circle-fill");
+  parametricSVG(circle, {fill: null});
+  is.equal
+    ( circle.getAttribute("fill")
+    , null
+    , "leaving no paws behind"
+    );
+  is.end();
+  });
+
+
 test("Warns, but succeeds in edge cases", is => {
   let warningCount = 0;
   console.originalWarn = console.warn;

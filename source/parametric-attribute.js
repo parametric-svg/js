@@ -41,9 +41,14 @@ export default class ParametricAttribute {
 
 
   update (...args) {
-    this.element.setAttributeNS(null, this.name
-      , this.func(...args)
-      );
+    let {element, name} = this;
+    let result = this.func(...args);
+    if (result !== null) {
+      element.setAttributeNS(null, name, result);
+      }
+    else if (result === null) {
+      element.removeAttributeNS(null, name);
+      }
     return this;
     }
   }

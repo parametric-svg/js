@@ -4,6 +4,7 @@
 
 , "laxbreak": true
 , "laxcomma": true
+, "eqnull": true
 
 , "undef": true
 , "unused": true
