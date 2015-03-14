@@ -3,7 +3,7 @@
 , "description": "Parametric 2D graphics in the browser. With pure SVG."
 
 , "scripts":
-  { "develop": "nodangel --exec npm test"
+  { "develop": "nodangel --watch source --watch test --exec npm test"
   , "test": "browserify test.js --transform babelify | tape-run --browser=phantom | tap-spec"
   , "test-in-browser": "echo 'Hold on a second – preparing fresh-baked tests for you...' && browserify test.js --transform babelify > test/runner/bundle.js && echo '...ready! Now navigate your browser to http://localhost:9001 to run them\\nand open the browser console to see the results.\\n' && cd test/runner && http-server -c-1 -p 9001"
   , "prepublish": "gulp build"
