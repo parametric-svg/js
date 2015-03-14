@@ -3,15 +3,10 @@ import ParametricAttribute from "./parametric-attribute";
 import warn from "./utils/warn";
 
 let getParameter = (virtualTree) => function getParameter (name) {
-  let parameter = virtualTree._parameters[name];
-  if (!parameter || parameter.error) {
-    warn
-      ( `Error while attempting to use the parameter \`${name}\`.`
-      , (parameter && parameter.error) || "It hasn't been declared."
-      );
-    return;
-    }
-  return parameter.value;
+  return (virtualTree._parameters[name]
+    || { error: new ReferenceError("Parameter not declared")
+       }
+    );
   };
 
 
@@ -51,9 +46,19 @@ export default class VirtualTree {
   _render () {
     // Call `.update()` on every ParametricAttribute,
     this._parametricAttributes.forEach(parametricAttribute => {
-      // passing relevant values from `this._parameters`.
-      parametricAttribute.update(
-        ...parametricAttribute.parameterNames.map(getParameter(this))
+      let parameters = parametricAttribute.parameterNames.map(getParameter(this))
+
+      // ...warning if errors have been found,
+      let errors = parameters.filter(parameter => parameter.error);
+      if (errors.length) errors.forEach(parameter => warn
+        ( `Error while attempting to evaluate \`parametric:${parametricAttribute.name}\`.\n`
+        + "Element:", parametricAttribute.element, "\n"
+        + "Error:", parameter.error
+        ));
+
+      // ...or passing relevant values from `this._parameters`.
+      else parametricAttribute.update(
+        ...parameters.map(parameter => parameter.value)
         );
       });
 

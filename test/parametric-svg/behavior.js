@@ -107,48 +107,52 @@ test("Removes an attribute upon null", is => {
 
 
 test("Handles edge cases", is => {
-  let warningCount = 0;
-  console.originalWarn = console.warn;
-  console.warn = () => {
-    warningCount++;
-    };
+  let originalWarn = console.warn;
+  let circle;
 
+  is.plan(7);
+
+  let warningCount = 0;
+  console.warn = () => warningCount += 1;
   parametricSVG(invalidDOM);
   is.equal
     ( warningCount
-    , 5
+    , 6
     , "warning once for every invalid `<ref>`, and once for every queer parametric attribute"
     );
-  warningCount = 0;
 
-  let circleUndefined;
-  parametricSVG((circleUndefined = invalidDOM.getElementById("circle-undefined")), {});
-  is.equal
-    ( warningCount, 1
-    , "warning about a non-declared parameter reference"
+  console.warn = () => is.pass
+    ( "warning about a non-declared parameter reference"
     );
+  parametricSVG((circle = invalidDOM.getElementById("circle-undefined")), {});
   is.equal
-    ( circleUndefined.getAttribute("r")
-    , "10"
-    , "- leaving the parameter intact"
+    ( circle.getAttribute("r")
+    , "1"
+    , "...leaving the parameter intact"
     );
-  warningCount = 0;
 
-  let circleArray;
-  parametricSVG((circleArray = invalidDOM.getElementById("circle-array"))
+  console.warn = () => is.pass
+    ( "warning about an expression with a non-declared parameter reference"
+    );
+  parametricSVG((circle = invalidDOM.getElementById("circle-undefined-operation")), {});
+  is.equal
+    ( circle.getAttribute("r")
+    , "2"
+    , "...leaving the parameter intact"
+    );
+
+  console.warn = () => is.pass
+    ( "warning when it encounters an array"
+    );
+  parametricSVG((circle = invalidDOM.getElementById("circle-array"))
     , {array: []}
     );
   is.equal
-    ( warningCount, 1
-    , "warning when it encounters an array"
+    ( circle.getAttribute("r")
+    , "3"
+    , "...leaving the parameter intact"
     );
-  is.equal
-    ( circleArray.getAttribute("r")
-    , "10"
-    , "- leaving the parameter intact"
-    );
-  warningCount = 0;
 
-  console.warn = console.originalWarn;
+  console.warn = originalWarn;
   is.end();
   });

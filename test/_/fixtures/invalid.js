@@ -10,13 +10,16 @@ export default
     <parametric:ref param="invalid" default="=!$^#" />
     </defs>
   <circle id="circle-undefined"
-    parametric:r="notThere" r="10"
+    parametric:r="notThere" r="1"
+    />
+  <circle id="circle-undefined-operation"
+    parametric:r="notThere + 2" r="2"
     />
   <circle id="circle-array"
-    parametric:r="array" r="10"
+    parametric:r="array" r="3"
     />
   <circle id="circle-invalid"
-    parametric:r="invalid" r="10"
+    parametric:r="invalid" r="4"
     />
   </svg>
 `;
