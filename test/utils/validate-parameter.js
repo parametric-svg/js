@@ -46,7 +46,7 @@ test("Accepts righteous types", (is) => {
   });
 
 
-test("Errors upon filthy types", (is) => {
+test("Errors upon bad types", (is) => {
 
   is.ok
     ( validateParameter(["anything"]).error
