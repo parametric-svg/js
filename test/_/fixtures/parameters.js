@@ -27,7 +27,7 @@ export default
     <parametric:ref param="invalid-fails" default="=" />
     <parametric:ref param="array-fails" default="[]" />
     <parametric:ref param="object-fails" default="{}" />
-    <!-- Should fail in fact -->
+    <!-- This should fail when we do the parsing right -->
     <!--parametric:ref param="expression-fails" default="1 + 2" /-->
     </defs>
   </svg>
