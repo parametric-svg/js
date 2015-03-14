@@ -77,6 +77,12 @@ test("Works with different data types", (is) => {
     , "double-quoted strings"
     );
 
+  is.equal
+    ( parameters["null-alright"].value
+    , null
+    , "null"
+    );
+
   is.end();
   });
 
@@ -96,11 +102,6 @@ test("Errors upon invalid values", (is) => {
   is.ok
     ( parameters["object-fails"].error
     , "objects"
-    );
-
-  is.ok
-    ( parameters["null-fails"].error
-    , "nulls"
     );
 
   is.end();

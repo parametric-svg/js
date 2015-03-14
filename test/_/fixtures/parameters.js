@@ -22,11 +22,11 @@ export default
     <parametric:ref param="boolean-true" default="true" />
     <parametric:ref param="string-alright" default="'alright'" />
     <parametric:ref param="string-double-quoted" default='"Double quoted"' />
+    <parametric:ref param="null-alright" default="null" />
 
     <parametric:ref param="invalid-fails" default="=" />
     <parametric:ref param="array-fails" default="[]" />
     <parametric:ref param="object-fails" default="{}" />
-    <parametric:ref param="null-fails" default="null" />
     </defs>
   </svg>
 `;

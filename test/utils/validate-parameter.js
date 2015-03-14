@@ -36,6 +36,12 @@ test("Accepts righteous types", (is) => {
     , "strings"
     );
 
+  is.equal
+    ( validateParameter(null).value
+    , null
+    , "null"
+    );
+
   is.end();
   });
 
@@ -50,11 +56,6 @@ test("Errors upon filthy types", (is) => {
   is.ok
     ( validateParameter({any: "object"}).error
     , "objects"
-    );
-
-  is.ok
-    ( validateParameter(null).error
-    , "null"
     );
 
   is.ok
