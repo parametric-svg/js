@@ -16,34 +16,34 @@ export default
     </defs>
   <circle id="circle-simple"
     parametric:r="simple" r="${INITIAL_R}"
-    x="${0 * INTERVAL}"
+    cx="${1 * INTERVAL}" cy="50"
     />
   <circle id="circle-factor"
     parametric:r="${INITIAL_R} * factor" r="${INITIAL_R}"
-    x="${1 * INTERVAL}"
+    cx="${2 * INTERVAL}" cy="50"
     />
   <circle id="circle-factor-plus"
     parametric:r="${INITIAL_R} * factor + plus" r="${INITIAL_R}"
-    x="${2 * INTERVAL}"
+    cx="${3 * INTERVAL}" cy="50"
     />
   <circle id="circle-factor-plus-fill"
     parametric:r="${INITIAL_R} * factor + plus" r="${INITIAL_R}"
     parametric:fill="fill"
-    x="${3 * INTERVAL}"
+    cx="${4 * INTERVAL}" cy="50"
     />
   <circle id="circle-fill"
     r="${INITIAL_R}"
     parametric:fill="fill"
-    x="${4 * INTERVAL}"
+    cx="${5 * INTERVAL}" cy="50"
     />
   <circle id="circle-ternary-fill"
     r="${INITIAL_R}"
     parametric:fill="ok ? okFill : fill"
-    x="${5 * INTERVAL}"
+    cx="${6 * INTERVAL}" cy="50"
     />
   <circle id="circle-percent"
     parametric:r="percent + '%'" r="${INITIAL_R}"
-    x="${6 * INTERVAL}"
+    cx="${7 * INTERVAL}" cy="50"
     />
   </svg>
 `;
