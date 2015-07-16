@@ -26,6 +26,24 @@ $ npm install parametric-svg
 
 
 
+Usage
+-----
+
+```js
+var parametricSvg = require('parametric-svg');
+```
+
+…or:
+
+```html
+<script src="https://wzrd.in/standalone/parametric-svg@0.0.5"></script>
+```
+
+What then? All I’ve got is this quick example – it must do for now: <http://jsbin.com/matisi/7/edit?html,js,output>.
+
+
+
+
 API
 ---
 
