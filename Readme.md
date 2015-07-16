@@ -32,14 +32,14 @@ API
 
 ### `parametricSVG(svgRoot, [parameters])`
 
-Parse and render all elements within the svgRoot. Defaults set with &amp;lt;ref&amp;gt; elements will be used for calculation, unless you override them with parameters.
+Parse and render all elements within the svgRoot. Defaults set with &lt;ref&gt; elements will be used for calculation, unless you override them with parameters.
 
 ### Parameters
 
 | parameter      | type          | description                                                                                                              |
 | -------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `svgRoot`      | SVGSVGElement |   An &amp;lt;svg&amp;gt; element.                                                                                                |
-| `[parameters]` | Object        | _optional:_   A hash of additional parameters. They&amp;#39;ll extend and override defaults set with &amp;lt;ref&amp;gt;   elements. |
+| `svgRoot`      | SVGSVGElement |   An &lt;svg&gt; element.                                                                                                |
+| `[parameters]` | Object        | _optional:_   A hash of additional parameters. They&#39;ll extend and override defaults set with &lt;ref&gt;   elements. |
 
 
 
@@ -48,7 +48,7 @@ Parse and render all elements within the svgRoot. Defaults set with &amp;lt;ref&
 
 ### `parametricSVG(element, parameters)`
 
-Pass any SVG node (like &amp;lt;circle&amp;gt;) to parse and render the node and all its descendants.
+Pass any SVG node (like &lt;circle&gt;) to parse and render the node and all its descendants.
 
 ### Parameters
 
@@ -71,7 +71,7 @@ Pass a cached VirtualTree to render the tree without reparsing any DOM. This is 
 | parameter      | type        | description                                                                                       |
 | -------------- | ----------- | ------------------------------------------------------------------------------------------------- |
 | `virtualTree`  | VirtualTree |                                                                                                   |
-| `[parameters]` | Object      | _optional:_   Supply a hash of additional parameters. They&amp;#39;ll extend and replace cached ones. |
+| `[parameters]` | Object      | _optional:_   Supply a hash of additional parameters. They&#39;ll extend and replace cached ones. |
 
 
 
