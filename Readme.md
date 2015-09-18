@@ -11,7 +11,7 @@
 
 **Parametric 2D graphics in the browser. With pure SVG.**
 
-**Heads up!** This package is in an early development stage. Not ready for use yet.
+**Heads up!** This package is based on an earlier version of the spec. We’re planning to [update it](https://github.com/parametric-svg/js/issues/2) – but for now you’re better off using the [`<parametric-svg>`](https://github.com/parametric-svg/element) custom element or the pair of low-level libraries *[parse](https://github.com/parametric-svg/parse)* and *[patch](https://github.com/parametric-svg/patch)*.
 
 
 
